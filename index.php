@@ -1,4 +1,4 @@
-<?php include 'inc/header.php'; ?>
+<?php require_once 'inc/header.php'; ?>
 <?php require_once 'App.php';
 use helpers\Str; 
 $products=$product->selectall();
@@ -34,11 +34,13 @@ if(!empty($products)):
             <p class="text-muted"><?= $product['price']?> EGP</p>
             <p class="card-text"><?=str::limit( $product['description'])?></p>
             <a href="show.php?id=<?=$product['id']?>" class="btn btn-primary">Show</a>
+            <?php if($session->hasSession('adminId')): ?>
 
             <a href="edit.php?id=<?=$product['id']?>" class="btn btn-info">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
-
-            </div>
+            <a href="./handlers/handleDeleteProduct.php?id=<?=$product['id']?>" class="btn btn-danger">Delete</a>   
+            <?php endif; ?>
+  
+               </div>
         </div>
         
     </div>
