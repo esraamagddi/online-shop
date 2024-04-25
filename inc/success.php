@@ -8,5 +8,7 @@
 
     <?php
     }
+    $session->remove('success');
+
     }
     ?>

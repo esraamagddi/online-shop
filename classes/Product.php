@@ -33,8 +33,13 @@ class Product extends MySql{
         }
 
         public function insert($name,$desc,$img,$price)
+
         {
-            $query = "INSERT INTO `products` (`name`, `desc`, `img`, `price`) VALUES ('$name', '$desc', '$img', $price)";
+            $name=$this->conn->escape_string($name);
+            $desc=$this->conn->escape_string($desc);
+            $price=$this->conn->escape_string($price);
+
+            $query = "INSERT INTO `products` (`name`, `description`, `image`, `price`) VALUES ('$name', '$desc', '$img', $price)";
             $runquery=$this->conn->query($query);
             if($runquery)
             {
@@ -46,7 +51,11 @@ class Product extends MySql{
 
         public function update($name,$desc,$img,$price,$id)
         {
-            $query = "UPDATE `products` SET `name`='$name', `desc`='$desc', `img`='$img', `price`=$price WHERE `id`=$id ";
+            $name=$this->conn->escape_string($name);
+            $desc=$this->conn->escape_string($desc);
+            $price=$this->conn->escape_string($price);
+            
+            $query = "UPDATE `products` SET `name`='$name', `description`='$desc', `image`='$img', `price`=$price WHERE `id`=$id ";
             $runquery=$this->conn->query($query);
             if($runquery)
             {

@@ -28,14 +28,14 @@ if(!empty($products)):
 
 
             <div class="card">
-            <img src="images/<?= $product['img']?>" class="card-img-top">
+            <img src="images/<?= $product['image']?>" class="card-img-top">
             <div class="card-body">
             <h5 class="card-title"><?= $product['name']?></h5>
             <p class="text-muted"><?= $product['price']?> EGP</p>
-            <p class="card-text"><?=str::limit( $product['desc'])?></p>
+            <p class="card-text"><?=str::limit( $product['description'])?></p>
             <a href="show.php?id=<?=$product['id']?>" class="btn btn-primary">Show</a>
 
-            <a href="edit.php" class="btn btn-info">Edit</a>
+            <a href="edit.php?id=<?=$product['id']?>" class="btn btn-info">Edit</a>
             <a href="" class="btn btn-danger">Delete</a>
 
             </div>

@@ -1,5 +1,5 @@
 <?php
-use helpers\Img ;
+use helpers\Img;
 // use validation\Img as validateimg;
 require_once '../App.php';
 
@@ -25,9 +25,12 @@ if ($request->ispost())
         $img=new Img($img);
 
        $runquery=$product->insert($name,$desc,$img->imgNewName,$price);
+       var_dump($runquery);
 
        if($runquery)
+
        {
+        var_dump($_FILES['img']);
             $img->upload();
             $session->push('success','product inserted successfully');
 
@@ -38,18 +41,24 @@ if ($request->ispost())
        {
         $session->push('errors','error while inserting product');
             
-        $request->redirect('../add.php');
+        $request->redirect('../Add.php');
        }
     }
     else
     {
         // echo '<pre>';
-        // print_r($validation->errors);
+        print_r($validation->errors);
         foreach ($validation->errors as $error) {
             $session->push('errors',$error);
             # code...
         }
-        $request->redirect('../add.php');
+
+        $session->add('name',$name);
+        $session->add('desc',$desc);
+        $session->add('price',$price);
+
+
+        $request->redirect('../Add.php');
 
     }
     
@@ -57,5 +66,5 @@ if ($request->ispost())
 else
 {
     echo 'errorrrr';
-    // $request->redirect('../add.php');
+    // $request->redirect('../Add.php');
 }
